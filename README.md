@@ -5,7 +5,7 @@ Whoever's harassing call will bring in a Little Boy treat. We've had enough, let
 
 
 ### License (MIT)
-TextBelt Copyright (C) 2018 by Ian Webster
+Copyright (C) 2020 by NatsumeZhang
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
