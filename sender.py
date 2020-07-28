@@ -15,23 +15,11 @@ class sms_send_1(object):
         }
         self.mobile = mobile
 
-    def get_response(self):
+    def run(self):
         data = {
             "mobilePhone": self.mobile
         }
-
-        try:
-            response = requests.post(url=self.url,
-                                     data=data,
-                                     headers=self.header
-                                     )
-            print(response.content)
-            print("{}:{}>>>Succeeded".format(self.url, self.mobile))
-        except Exception:
-            print("{}:{}>>>Failed".format(self.url, self.mobile))
-
-    def run(self):
-        self.get_response()
+        get_response(self.url, data, self.header, mobile)
 
 
 class sms_send_2(object):
@@ -46,21 +34,21 @@ class sms_send_2(object):
         }
         self.mobile = mobile
 
-    def get_response(self):
-        data = 'sid=miothealth&user=' + str(self.mobile)
-
-        try:
-            response = requests.post(url=self.url,
-                                     data=data,
-                                     headers=self.header
-                                     )
-            print(response.content)
-            print("{}:{}>>>Succeeded".format(self.url, self.mobile))
-        except Exception:
-            print("{}:{}>>>Failed".format(self.url, self.mobile))
-
     def run(self):
-        self.get_response()
+        data = 'sid=miothealth&user=' + str(self.mobile)
+        get_response(self.url, data, self.header, mobile)
+
+
+def get_response(url, data, header, mobile):
+    try:
+        response = requests.post(url=url,
+                                 data=data,
+                                 headers=header
+                                 )
+        print(response.content)
+        print("{}:{}>>>Succeeded".format(url, mobile))
+    except Exception:
+        print("{}:{}>>>Failed".format(url, mobile))
 
 
 if __name__ == "__main__":
