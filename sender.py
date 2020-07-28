@@ -16,11 +16,38 @@ class sms_send_1(object):
         self.mobile = mobile
 
     def get_response(self):
-        time_now = int(time.time() * 1000)
-
         data = {
             "mobilePhone": self.mobile
         }
+
+        try:
+            response = requests.post(url=self.url,
+                                     data=data,
+                                     headers=self.header
+                                     )
+            print(response.content)
+            print("{}:{}>>>Succeeded".format(self.url, self.mobile))
+        except Exception:
+            print("{}:{}>>>Failed".format(self.url, self.mobile))
+
+    def run(self):
+        self.get_response()
+
+
+class sms_send_2(object):
+    """https://account.xiaomi.com/pass/sendServiceLoginTicket"""
+
+    def __init__(self, mobile):
+        self.url = "https://account.xiaomi.com/pass/sendServiceLoginTicket"
+        self.header = {
+            "User-Agent": "APP/com.xiaomi.miwatch APPV/1.3 iosPassportSDK/3.6.8 iOS/13.6 miHSTS",
+            'Cookie': 'deviceId=EE6F43D7820CECC5; sdkVersion=3.6.8',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        self.mobile = mobile
+
+    def get_response(self):
+        data = 'sid=miothealth&user=' + str(self.mobile)
 
         try:
             response = requests.post(url=self.url,
@@ -41,3 +68,4 @@ if __name__ == "__main__":
     mobile = ""
     mobile = input("Phone input: ")
     sms_send_1(mobile).run()
+    sms_send_2(mobile).run()
